@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!<![endif]-->
+<html>
+    <head>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Sign Up Form by Colorlib</title>
+            <!-- setting  -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+            <link rel="stylesheet" href="path/to/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+            <!-- css  -->
+            <link href="{%static 'css/material-design-iconic-font.min.css' %}" rel="stylesheet"/>
+            <link href="{%static 'css/material-design-iconic-font.css' %}" rel="stylesheet"/>
+            <link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+            <!-- js css -->
+            <script src="{%static 'js/checkout.js' %}" > </script>
+            <script src="{%static 'js/jquery.slim.min.js' %}" > </script>
+            <script src="{%static 'js/jquery-ui.min.js' %}" > </script>
+            
+            <!-- js css -->
+            <link href="{%static 'scss/extend.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/fonts.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/global.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/main.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/minxi.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/responsive.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/style.scss' %}" rel="stylesheet">
+            <link href="{%static 'scss/variables.scss' %}" rel="stylesheet">
+        </head>
+    </head>
+    <body>
+        {% block login %} 
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'register' %}" class="signup-image-link">Create an account</a>
+                        <a href="{% url 'home' %}" class="signup-image-link">Go back home</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="login-form" action=''>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="username" id="your_name" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="your_pass" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term">
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <button type="submit" name="user" id="signin" class="form-submit">Log in</button>
+                            </div>
+                            {% for i in messages %}
+                            <p id="message" class="text-center h6 fw-bold mb-5 mx-1 mx-md-4 mt-4">{{i}}</p>
+                            {% endfor %}
+                        </form>
+                        <div class="social-login">
+                            <span class="social-label">Or login with</span>
+                            <ul class="socials">
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                                <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock login %}
+        <script src="{%static 'js/jquery.min.js' %}" > </script>
+        <script src="{%static 'js/main.js' %}" > </script>
+    </body>
+</html>

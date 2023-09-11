@@ -1,0 +1,75 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block cart-list %} 
+<section class="pt-5 pb-5">
+    <div class="container">
+      <div class="row w-100">
+          <div class="col-lg-12 col-md-12 col-12">
+              <h3 class="display-5 mb-2 text-center">Shopping Cart</h3>
+              <p class="mb-5 text-center">
+                  <i class="text-info font-weight-bold">{{order.get_cart_items}}</i> items in your cart</p>
+              <table id="shoppingCart" class="table table-condensed table-responsive">
+                  <thead>
+                      <tr>
+                          <th style="width:60%">Product</th>
+                          <th style="width:12%">Price</th>
+                          <th style="width:10%">Quantity</th>
+                          <th style="width:16%"></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in items %}
+                      <tr>
+                          <td data-th="Product">
+                              <div class="row">
+                                  <div class="col-md-3 text-left">
+                                      <img src="{{i.product.ImageURL}}" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                  </div>
+                                  <div class="col-md-9 text-left mt-sm-2">
+                                      <h4>{{i.product.name}}</h4>
+                                      <p class="font-weight-light">Brand &amp; Name</p>
+                                  </div>
+                              </div>
+                          </td>
+                          <td data-th="Price">${{i.get_total}}</td>
+                          <td data-th="Quantity">
+                            <div class="col-4">
+                                <div class="row d-flex justify-content-end px-3">
+                                    <p class="mb-0" id="cnt2">{{i.quantity}}
+                                    <a class="plus-minus">
+                                        <span data-product={{i.product.id}} data-action="add" class="vsm-text plus update-cart">+</span>
+                                        <span data-product={{i.product.id}} data-action="remove" class="vsm-text minus update-cart">-</span>
+                                    </a>
+                                     </p>
+                                </div>
+                            </div>
+                          </td>
+                          <td class="actions" data-th="">
+                              <div class="text-right">
+                                <img data-product={{i.product.id}} data-action="delete" class="update-cart" id="cart-icon" src="{% static 'images/delete.png' %}" >
+                              </div>
+                          </td>
+                      </tr>
+                      
+                      {% endfor %}
+                  </tbody>
+              </table>
+              <div class="float-right text-right">
+                  <h4>Subtotal:</h4>
+                  <h1>${{order.get_cart_total}}</h1>
+              </div>
+          </div>
+      </div>
+      <div class="row mt-4 d-flex align-items-center">
+          <div class="col-sm-6 order-md-2 text-right">
+              <a href="{% url 'checkout' %}" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+          </div>
+          <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+              <a href="{% url 'product' %}">
+                  <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
+          </div>
+      </div>
+  </div>
+  </section>
+{% endblock cart-list %} 
+
